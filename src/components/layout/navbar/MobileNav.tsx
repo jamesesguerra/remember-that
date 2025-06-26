@@ -1,6 +1,7 @@
-import { MobileNavProps } from "@/types/ui/navbar/navbar.types";
-import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
+import { motion } from "motion/react";
+
+import { MobileNavProps } from "@/types/ui/navbar/navbar.types";
 
 export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
   return (

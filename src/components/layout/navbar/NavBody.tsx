@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
-import { NavBodyProps } from "@/types/ui/navbar/navbar.types";
 import { cn } from "@/lib/utils";
+
+import { NavBodyProps } from "@/types/ui/navbar/navbar.types";
 
 export const NavBody = ({ children, className, visible }: NavBodyProps) => {
   return (

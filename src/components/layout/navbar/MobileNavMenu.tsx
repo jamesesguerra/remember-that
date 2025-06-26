@@ -1,6 +1,7 @@
-import { MobileNavMenuProps } from "@/types/ui/navbar/navbar.types";
-import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "motion/react";
+
+import { MobileNavMenuProps } from "@/types/ui/navbar/navbar.types";
 
 export const MobileNavMenu = ({
   children,

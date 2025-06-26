@@ -1,9 +1,9 @@
 "use client";
-
 import { useState } from "react";
-import { NavItemsProps } from "@/types/ui/navbar/navbar.types";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
+
+import { NavItemsProps } from "@/types/ui/navbar/navbar.types";
 
 export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
   const [hovered, setHovered] = useState<number | null>(null);

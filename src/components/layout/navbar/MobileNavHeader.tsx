@@ -1,5 +1,6 @@
-import { MobileNavHeaderProps } from "@/types/ui/navbar/navbar.types";
 import { cn } from "@/lib/utils";
+
+import { MobileNavHeaderProps } from "@/types/ui/navbar/navbar.types";
 
 export const MobileNavHeader = ({
   children,

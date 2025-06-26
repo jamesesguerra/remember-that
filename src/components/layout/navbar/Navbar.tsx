@@ -1,102 +1,84 @@
 "use client";
-import { cn } from "@/lib/utils";
-import {
-  motion,
-  useScroll,
-  useMotionValueEvent,
-} from "motion/react";
-import {
-    NavbarProps,
-} from "@/types/ui/navbar/navbar.types";
+import React, { useState } from "react";
+import DesktopNav, { NavbarLogo } from "./DesktopNav";
+import { NavBody } from "./NavBody";
+import { NavItems } from "./NavItems";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { MobileNav } from "./MobileNav";
+import { MobileNavHeader } from "./MobileNavHeader";
+import { MobileNavToggle } from "./MobileNavToggle";
+import { MobileNavMenu } from "./MobileNavMenu";
+import { Separator } from "@/components/ui/separator";
 
-import React, { useRef, useState } from "react";
+export const Navbar = () => {
+    const navItems = [
+        {
+            name: "Dashboard",
+            link: "#features",
+        },
+        {
+            name: "New Entry",
+            link: "#pricing",
+        },
+        {
+            name: "My Entries",
+            link: "#contact",
+        },
+    ];
 
-export const Navbar = ({ children, className }: NavbarProps) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const [visible, setVisible] = useState<boolean>(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 100) {
-      setVisible(true);
-    } else {
-      setVisible(false);
-    }
-  });
+    return (
+        <DesktopNav>
+            <NavBody>
+                <NavbarLogo />
+                <NavItems items={navItems} />
+                <div className="flex items-center gap-4">
+                <Avatar>
+                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+                </div>
+            </NavBody>
 
-  return (
-    <motion.div
-      ref={ref}
-      className={cn("sticky inset-x-0 top-5 z-40 w-full", className)}
-    >
-      {React.Children.map(children, (child) =>
-        React.isValidElement(child)
-          ? React.cloneElement(
-              child as React.ReactElement<{ visible?: boolean }>,
-              { visible },
-            )
-          : child,
-      )}
-    </motion.div>
-  );
-};
+            <MobileNav>
+                <MobileNavHeader>
+                <NavbarLogo />
+                <MobileNavToggle
+                    isOpen={isMobileMenuOpen}
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                />
+                </MobileNavHeader>
 
-export const NavbarLogo = () => {
-  return (
-    <a
-      href="#"
-      className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
-    >
-      <img
-        src="https://assets.aceternity.com/logo-dark.png"
-        alt="logo"
-        width={30}
-        height={30}
-      />
-      <span className="font-medium text-black dark:text-white">RememberThat</span>
-    </a>
-  );
-};
+                <MobileNavMenu
+                isOpen={isMobileMenuOpen}
+                onClose={() => setIsMobileMenuOpen(false)}
+                >
+                <div className="flex w-full gap-4 items-center">
+                    <Avatar>
+                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                    <span>James Esguerra</span>
+                </div>
 
-export const NavbarButton = ({
-  href,
-  as: Tag = "a",
-  children,
-  className,
-  variant = "primary",
-  ...props
-}: {
-  href?: string;
-  as?: React.ElementType;
-  children: React.ReactNode;
-  className?: string;
-  variant?: "primary" | "secondary" | "dark" | "gradient";
-} & (
-  | React.ComponentPropsWithoutRef<"a">
-  | React.ComponentPropsWithoutRef<"button">
-)) => {
-  const baseStyles =
-    "px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
+                <Separator className="my-4" />
 
-  const variantStyles = {
-    primary:
-      "shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
-    secondary: "bg-transparent shadow-none dark:text-white",
-    dark: "bg-black text-white shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
-    gradient:
-      "bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
-  };
+                {navItems.map((item, idx) => (
+                    <a
+                    key={`mobile-link-${idx}`}
+                    href={item.link}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="relative text-neutral-600 dark:text-neutral-300"
+                    >
+                    <span className="block">{item.name}</span>
+                    </a>
+                ))}
 
-  return (
-    <Tag
-      href={href || undefined}
-      className={cn(baseStyles, variantStyles[variant], className)}
-      {...props}
-    >
-      {children}
-    </Tag>
-  );
+                <Separator className="my-2" />
+                </MobileNavMenu>
+            </MobileNav>
+        </DesktopNav>
+    );
 };
