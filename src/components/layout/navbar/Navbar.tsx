@@ -1,14 +1,14 @@
 "use client";
 import React, { useState } from "react";
-import DesktopNav, { NavbarLogo } from "./DesktopNav";
-import { NavBody } from "./NavBody";
-import { NavItems } from "./NavItems";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { MobileNav } from "./MobileNav";
-import { MobileNavHeader } from "./MobileNavHeader";
-import { MobileNavToggle } from "./MobileNavToggle";
-import { MobileNavMenu } from "./MobileNavMenu";
-import { Separator } from "@/components/ui/separator";
+import DesktopNav, { NavbarLogo } from "./desktop-nav";
+import { NavBody } from "./nav-body";
+import { NavItems } from "./nav-items";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/shadcn/avatar";
+import { MobileNav } from "./mobile-nav";
+import { MobileNavHeader } from "./mobile-nav-header";
+import { MobileNavToggle } from "./mobile-nav-toggle";
+import { MobileNavMenu } from "./mobile-nav-menu";
+import { Separator } from "@/components/ui/shadcn/separator";
 
 export const Navbar = () => {
     const navItems = [
