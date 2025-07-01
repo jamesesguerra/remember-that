@@ -17,7 +17,9 @@ const Hero = () => {
             Solve it. Log it. Never struggle with it again.
           </h1>
           <p className="mt-6 max-w-[60ch] xs:text-lg text-center">
-            RememberThat helps you store, search, and organize the bugs and solutions you already solved — so you never waste time fixing the same thing twice.
+            RememberThat helps you store, search, and organize the bugs and
+            solutions you already solved — so you never waste time fixing the
+            same thing twice.
           </p>
           <div className="mt-12 flex flex-col sm:flex-row items-center sm:justify-center gap-4">
             <Button
@@ -31,7 +33,8 @@ const Hero = () => {
               size="lg"
               className="w-full sm:w-auto rounded-full text-base shadow-none hover:cursor-pointer"
             >
-              Log in<ArrowUpRight className="!h-5 !w-5" />
+              Log in
+              <ArrowUpRight className="!h-5 !w-5" />
             </Button>
           </div>
         </div>

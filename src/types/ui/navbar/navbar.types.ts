@@ -35,5 +35,3 @@ export interface MobileNavMenuProps {
   isOpen: boolean;
   onClose: () => void;
 }
-
-
