@@ -1,7 +1,7 @@
 "use client";
 import { Navbar } from "@/components/layout/navbar/navbar";
 import EntryCard from "@/components/ui/features/entries/entry-card";
-import { Input } from "@/components/ui/shadcn/input";
+import { EntryDialog } from "@/components/ui/features/entries/entry-dialog";
 
 export default function Home() {
   return (
@@ -15,9 +15,8 @@ export default function Home() {
             What did you figure out today?
           </span>
         </h1>
-        <div className="mb-10 mt-5 text-center text-sm text-zinc-500 max-w-2xl mx-auto">
-          <Input type="text" placeholder="Add something quick..." />
-        </div>
+
+        <EntryDialog />
       </div>
 
       <section className="container mx-auto px-8">
