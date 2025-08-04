@@ -13,20 +13,30 @@ import { MobileNavHeader } from "./mobile-nav-header";
 import { MobileNavToggle } from "./mobile-nav-toggle";
 import { MobileNavMenu } from "./mobile-nav-menu";
 import { Separator } from "@/components/ui/shadcn/separator";
+import {
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from "@/components/ui/shadcn/dropdown-menu";
+import { DropdownMenuContent } from "@/components/ui/shadcn/dropdown-menu";
+import { DropdownMenu } from "@/components/ui/shadcn/dropdown-menu";
 
 export const Navbar = () => {
   const navItems = [
     {
       name: "Dashboard",
-      link: "#features",
+      link: "/dashboard",
     },
     {
       name: "New Entry",
-      link: "#pricing",
+      link: "/entries/new",
     },
     {
       name: "My Entries",
-      link: "#contact",
+      link: "/entries",
     },
   ];
 
@@ -38,10 +48,32 @@ export const Navbar = () => {
         <NavbarLogo />
         <NavItems items={navItems} />
         <div className="flex items-center gap-4">
-          <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Avatar>
+                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuGroup>
+                <DropdownMenuItem>
+                  Profile
+                  <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  Settings
+                  <DropdownMenuShortcut>⇧⌘S</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                Log out
+                <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </NavBody>
 
@@ -73,7 +105,7 @@ export const Navbar = () => {
               key={`mobile-link-${idx}`}
               href={item.link}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="relative text-neutral-600 dark:text-neutral-300"
+              className="relative text-neutral-600"
             >
               <span className="block">{item.name}</span>
             </a>
