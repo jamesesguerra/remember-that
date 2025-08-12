@@ -23,8 +23,12 @@ import {
 } from "@/components/ui/shadcn/dropdown-menu";
 import { DropdownMenuContent } from "@/components/ui/shadcn/dropdown-menu";
 import { DropdownMenu } from "@/components/ui/shadcn/dropdown-menu";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export const Navbar = () => {
+   const router = useRouter();
+
   const navItems = [
     {
       name: "Dashboard",
@@ -41,6 +45,12 @@ export const Navbar = () => {
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    toast.success("Successfully logged out")
+    router.push("/login");
+  }
 
   return (
     <DesktopNav>
@@ -68,7 +78,7 @@ export const Navbar = () => {
                 </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={handleLogout}>
                 Log out
                 <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
               </DropdownMenuItem>

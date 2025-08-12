@@ -2,11 +2,14 @@
 import { Navbar } from "@/components/layout/navbar/navbar";
 import EntryCard from "@/components/ui/features/entries/entry-card";
 import { EntryDialog } from "@/components/ui/features/entries/entry-dialog";
+import { useAuthRedirect } from "@/hooks/use-auth-redirect";
 import { Entry } from "@/models/entry";
 import { getEntries } from "@/services/entries-service";
 import { useEffect } from "react";
 
 export default function Home() {
+  useAuthRedirect();
+  
   useEffect(() => {
     getEntries().then((entries: Entry[]) => {
       console.log(entries);
