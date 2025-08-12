@@ -25,16 +25,13 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col gap-3">
-          <Label htmlFor="tags">
-            Tags
-          </Label>
+          <Label htmlFor="tags">Tags</Label>
           <Input id="tags" name="tags" />
         </div>
 
         <div className="flex justify-end">
           <Button>Save</Button>
         </div>
-
       </div>
     </section>
   );

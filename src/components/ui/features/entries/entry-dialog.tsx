@@ -34,7 +34,10 @@ export function EntryDialog() {
     e.preventDefault();
 
     try {
-      const res = await axios.post("https://api.james-esg.com/entries", formData);
+      const res = await axios.post(
+        "https://api.james-esg.com/entries",
+        formData,
+      );
       console.log("✅ Entry saved:", res.data);
 
       setFormData({ title: "", solution: "", tags: "" });

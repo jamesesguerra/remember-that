@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/shadcn/button";
 import { ArrowUpRight } from "lucide-react";
 
 import LogoCloud from "./logo-cloud";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -26,14 +27,15 @@ const Hero = () => {
               size="lg"
               className="w-full sm:w-auto rounded-full text-base hover:cursor-pointer"
             >
-              Get Started <ArrowUpRight className="!h-5 !w-5" />
+              <Link href="/sign-up">Get started</Link>
+              <ArrowUpRight className="!h-5 !w-5" />
             </Button>
             <Button
               variant="outline"
               size="lg"
               className="w-full sm:w-auto rounded-full text-base shadow-none hover:cursor-pointer"
             >
-              Log in
+              <Link href="/login">Log in</Link>
               <ArrowUpRight className="!h-5 !w-5" />
             </Button>
           </div>
