@@ -11,8 +11,6 @@ import {
 import { Input } from "@/components/ui/shadcn/input";
 import { Label } from "@/components/ui/shadcn/label";
 import { useForm } from "react-hook-form";
-import LoginDto from "@/models/login-dto";
-import { login } from "@/services/auth-service";
 import SignupDto from "@/models/signup-dto";
 import Link from "next/link";
 
@@ -22,8 +20,8 @@ export function SignupForm({
 }: React.ComponentProps<"div">) {
   const { register, handleSubmit } = useForm<SignupDto>();
 
-  const onSubmit = (credentials: LoginDto) => {
-    login(credentials).then((token: string) => console.log(token));
+  const onSubmit = () => {
+
   };
 
   return (
